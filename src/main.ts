@@ -1,8 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { AllExceptionFilter } from './common/filters/http-exception.filter';
+import { TimeOutInterceptor } from './common/interceptors/timeout.interceptor';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  app.useGlobalFilters(new AllExceptionFilter());
+  app.useGlobalInterceptors(new TimeOutInterceptor());
+  app.enableCors();
+
+
+  await app.listen(process.env.API_PORT || 3000);
 }
 bootstrap();

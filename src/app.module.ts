@@ -8,10 +8,12 @@ import { ReservasController } from './reservas/reservas.controller';
 import { ReservasModule } from './reservas/reservas.module';
 import { ClientesService } from './clientes/clientes.service';
 import { ClientesModule } from './clientes/clientes.module';
+import { UsersController } from './users/users.controller';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [HotelesModule, HabitacionesModule, ReservasModule, ClientesModule],
-  controllers: [AppController, ReservasController],
+  imports: [HotelesModule, HabitacionesModule, ReservasModule, ClientesModule, UsersModule],
+  controllers: [AppController, ReservasController, UsersController],
   providers: [AppService, ReservasService, ClientesService],
 })
 export class AppModule {}
