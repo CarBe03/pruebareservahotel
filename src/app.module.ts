@@ -10,10 +10,23 @@ import { ClientesService } from './clientes/clientes.service';
 import { ClientesModule } from './clientes/clientes.module';
 import { UsersController } from './users/users.controller';
 import { UsersModule } from './users/users.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
-  imports: [HotelesModule, HabitacionesModule, ReservasModule, ClientesModule, UsersModule],
-  controllers: [AppController, ReservasController, UsersController],
-  providers: [AppService, ReservasService, ClientesService],
+  imports: [
+    ConfigModule.forRoot({
+      envFilePath: '.env.development',
+      isGlobal: true,
+    }),
+    MongooseModule.forRoot(process.env.uri_mongo),
+    HotelesModule,
+    HabitacionesModule,
+    ReservasModule,
+    ClientesModule,
+    UsersModule,
+  ],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}

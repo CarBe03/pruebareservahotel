@@ -1,5 +1,5 @@
 import { IHotel } from 'src/hoteles/hoteles.interface';
-export interface IHabitacion extends Document {
+export interface IHabitaciones extends Document {
   numero: string;
-  hotel: IHotel[];
+  hoteles: IHotel[];
 }
